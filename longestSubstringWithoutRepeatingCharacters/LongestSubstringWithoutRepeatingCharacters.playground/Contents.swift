@@ -27,3 +27,4 @@ func lengthOfLongestSubstring(_ s: String) -> Int {
     return maxLen
 }
 
+lengthOfLongestSubstring("abcc")
