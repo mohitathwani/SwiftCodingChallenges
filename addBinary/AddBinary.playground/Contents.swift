@@ -10,75 +10,26 @@ func addBinary(_ a: String, _ b: String) -> String {
     var aA = a
     var bB = b
     
-    if a.count == 0 && b.count == 0 {
-        return ""
-    }
-    
-    if a.count == 0 {
-        return b
-    }
-    
-    if b.count == 0 {
-        return a
-    }
+    var result = ""
     
     var carry = 0
-    var result = ""
-    while aA.count > 0 && bB.count > 0 {
-        let aDigit = Int("\(aA.removeLast())")!
-        let bDigit = Int("\(bB.removeLast())")!
-        
-        let decimalSum = carry + aDigit + bDigit
-        
-        if decimalSum == 2 || decimalSum == 3 {
-            carry = 1
-        } else {
-            carry = 0
-        }
-        
-        let binarySum = carry ^ aDigit ^ bDigit;
-        result = String(binarySum) + result
-    }
+    var i = aA.count - 1
+    var j = bB.count - 1
     
-    if(bB.count == 0) {
-        while aA.count > 0 {
-            let aDigit = Int("\(aA.removeLast())")!
-            
-            let decimalSum = carry + aDigit
-            
-            if decimalSum == 2 {
-                carry = 1
-            } else {
-                carry = 0
-            }
-            
-            let binarySum = carry ^ aDigit
-            result = String(binarySum) + result
-        }
-    }
     
-    if(aA.count == 0) {
-        while bB.count > 0 {
-            let bDigit = Int("\(bB.removeLast())")!
-            
-            let decimalSum = carry + bDigit
-            
-            if decimalSum == 2 {
-                carry = 1
-            } else {
-                carry = 0
-            }
-            
-            let binarySum = carry ^ bDigit
-            result = String(binarySum) + result
-        }
-    }
-    
-    if carry == 1 {
-        result = String(1) + result
+    while i >= 0 || j >= 0 || carry == 1 {
+        let aDigit = i >= 0 ? Int("\(aA.removeLast())")! : 0
+        let bDigit = j >= 0 ? Int("\(bB.removeLast())")! : 0
+        
+        i -= 1
+        j -= 1
+        
+        carry += aDigit + bDigit
+        result = "\(carry % 2)" + result
+        carry /= 2
     }
     
     return result
 }
 
-addBinary("110", "11")
+addBinary("1010", "1011")
