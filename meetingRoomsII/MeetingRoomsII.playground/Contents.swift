@@ -5,6 +5,7 @@
 //Given [[0, 30],[5, 10],[15, 20]],
 //return 2.
 
+//66/77 tests passing. Will revisit the problem later.
 
 /**
  * Definition for an interval.
@@ -24,24 +25,24 @@ func minMeetingRooms(_ intervals: [Interval]) -> Int {
         return 0
     }
     
-    let sortedIntervals = intervals.sorted { $0.end < $1.end}
+    var changes = [(time: Int, state: Int)]()
     
-    var numRooms = 1
+    var maxRooms = 0, runningRoomsCount = 0
     
-    var index = 1
-    var base = sortedIntervals[0]
-    while index < intervals.count {
-        if base.end <= sortedIntervals[index].start {
-            
-        } else {
-            numRooms += 1
-            base = sortedIntervals[index]
-        }
-        
-        index += 1
+    for interval in intervals {
+        changes.append((interval.start, 1))
+        changes.append((interval.end, -1))
     }
     
-    return numRooms
+    changes.sort {$0.time < $1.time}
+    print(changes)
+    for change in changes {
+        runningRoomsCount += change.state
+        maxRooms = max(maxRooms, runningRoomsCount)
+    }
+    
+    return maxRooms
+    
 }
 
-minMeetingRooms([Interval(1,5), Interval(8,9), Interval(8,9)])
+minMeetingRooms([Interval(13,15), Interval(1,13)])
