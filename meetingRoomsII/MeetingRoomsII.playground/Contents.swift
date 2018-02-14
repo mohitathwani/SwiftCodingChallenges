@@ -5,7 +5,7 @@
 //Given [[0, 30],[5, 10],[15, 20]],
 //return 2.
 
-//66/77 tests passing. Will revisit the problem later.
+//66/77 tests passing. Will revisit the problem 
 
 /**
  * Definition for an interval.
