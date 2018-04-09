@@ -9,22 +9,24 @@
 //
 //Given "pwwkew", the answer is "wke", with the length of 3. Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
 
-func lengthOfLongestSubstring(_ s: String) -> Int {
-    var maxLen = 0,i = 0, counter = 0
-    var seenCharacters = [Character: Int]()
+func lengthOfLongestSubstring(_ s:String) -> Int {
+    var maxLen = 0
+    var i = 0
     
-    while counter < s.count {
-        let j = s.index(s.startIndex, offsetBy: counter)
-        
-        if seenCharacters[s[j]] != nil {
-            i = max(i, seenCharacters[s[j]]!)
+    var seenChracters = [Character:Int]()
+    var charArray = Array(s)
+    
+    for j in 0..<s.count {
+        if let seenCharIndex = seenChracters[charArray[j]] {
+            i = max(i, seenCharIndex)
         }
         
-        maxLen = max(maxLen, j.encodedOffset - i + 1)
-        seenCharacters[s[j]] = j.encodedOffset + 1
-        counter = counter + 1
+        maxLen = max(maxLen, j - i + 1)
+        seenChracters[charArray[j]] = j + 1
     }
+    
     return maxLen
+    
 }
 
 lengthOfLongestSubstring("abcc")
