@@ -16,67 +16,44 @@
 //
 //Output: "bb"
 
-func longestPalindrome(_ s: String) -> String {
+func longestPalindromeSubstring(_ s:String) -> String {
+    if(s.count == 1 || s.isEmpty) {
+        return s
+    }
+    
     var resultMatrix = [[Bool]](repeatElement([Bool](repeatElement(false, count: s.count)), count: s.count))
+    var charArray = Array(s)
     
     for i in 0..<s.count {
         resultMatrix[i][i] = true
     }
     
-    var startIndex = String.Index(encodedOffset: 0)
-    var endIndex = String.Index(encodedOffset: 0)
+    var startIndex = 0
     var maxLen = 0
     
-    
-    
+    //Our loop goes bottom to up, left to right...
     for i in (0...s.count - 2).reversed() {
-        for j in (i+1 ..< s.count) {
-            let iIndex = s.index(s.startIndex, offsetBy: i)
-            let jIndex = s.index(s.startIndex, offsetBy: j)
-            
-            if s[iIndex] != s[jIndex] {
-                resultMatrix[i][j] = false
+        for j in (i + 1)..<s.count {
+            if(charArray[i] != charArray[j]) {
+                resultMatrix[i][j] = false;
             }
             else {
-                resultMatrix[i][j] = true && (resultMatrix[i + 1][j - 1] || j - i < 3) //j - i < 3 is the trick here else it will not work for strings less than length 3
-                if resultMatrix[i][j] == true && j - i + 1 > maxLen {
+                //j - i < 3 is required for adjacent characters being equal
+                resultMatrix[i][j] = true && (resultMatrix[i + 1][j - 1] || j - i < 3)
+                
+                if resultMatrix[i][j] == true && (j - i + 1) > maxLen {
+                    startIndex = i
                     maxLen = j - i + 1
-                    startIndex = iIndex
-                    endIndex = jIndex
                 }
             }
         }
     }
     
+    if maxLen == 0 {
+        return String(charArray[0])
+    }
     
-    
-    
-//    for column in 0..<s.count {
-//        var i = 0, j = column + 1
-//
-//        while i < s.count && j < s.count {
-//
-//            let iIndex = s.index(s.startIndex, offsetBy: i)
-//            let jIndex = s.index(s.startIndex, offsetBy: j)
-//
-//            if s[iIndex] != s[jIndex] {
-//                resultMatrix[i][j] = false
-//            }
-//            else {
-//                resultMatrix[i][j] = true && (resultMatrix[i + 1][j - 1] || j - i < 3) //j - i < 3 is the trick here else it will not work for strings less than length 3
-//                if resultMatrix[i][j] == true && j - i + 1 > maxLen {
-//                    maxLen = j - i + 1
-//                    startIndex = iIndex
-//                    endIndex = jIndex
-//                }
-//            }
-//            i += 1
-//            j += 1
-//        }
-//    }
-    return String(s[startIndex...endIndex])
+    let beginningIndex = s.index(s.startIndex, offsetBy: startIndex)
+    let endIndex = s.index(beginningIndex, offsetBy: maxLen)
+    return String(s[beginningIndex..<endIndex])
 }
-
-//longestPalindrome("dababacd")
-longestPalindrome("civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth")
-
