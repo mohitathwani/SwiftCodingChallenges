@@ -3,53 +3,68 @@
    version = "3.0">
    <TimelineItems>
       <LoggerValueHistoryTimelineItem
-         documentLocation = "file:///Users/mohitathwani/Desktop/SwiftCodingChallenges/longestPalindromicSubstring/LongestPalindromicSubstring.playground#CharacterRangeLen=0&amp;CharacterRangeLoc=1607&amp;EndingColumnNumber=0&amp;EndingLineNumber=59&amp;StartingColumnNumber=0&amp;StartingLineNumber=59&amp;Timestamp=545076443.338982"
+         documentLocation = "file:///Users/mohitathwani/Desktop/SwiftCodingChallenges/longestPalindromicSubstring/LongestPalindromicSubstring.playground#CharacterRangeLen=518&amp;CharacterRangeLoc=2237&amp;EndingColumnNumber=0&amp;EndingLineNumber=101&amp;StartingColumnNumber=0&amp;StartingLineNumber=82&amp;Timestamp=545162366.9090281"
          selectedRepresentationIndex = "0"
          shouldTrackSuperviewWidth = "NO">
       </LoggerValueHistoryTimelineItem>
       <LoggerValueHistoryTimelineItem
-         documentLocation = "file:///Users/mohitathwani/Desktop/SwiftCodingChallenges/longestPalindromicSubstring/LongestPalindromicSubstring.playground#CharacterRangeLen=0&amp;CharacterRangeLoc=1607&amp;EndingColumnNumber=0&amp;EndingLineNumber=59&amp;StartingColumnNumber=0&amp;StartingLineNumber=59&amp;Timestamp=545076443.339311"
+         documentLocation = "file:///Users/mohitathwani/Desktop/SwiftCodingChallenges/longestPalindromicSubstring/LongestPalindromicSubstring.playground#CharacterRangeLen=518&amp;CharacterRangeLoc=2237&amp;EndingColumnNumber=0&amp;EndingLineNumber=101&amp;StartingColumnNumber=0&amp;StartingLineNumber=82&amp;Timestamp=545162366.909277"
          selectedRepresentationIndex = "0"
          shouldTrackSuperviewWidth = "NO">
       </LoggerValueHistoryTimelineItem>
       <LoggerValueHistoryTimelineItem
-         documentLocation = "file:///Users/mohitathwani/Desktop/SwiftCodingChallenges/longestPalindromicSubstring/LongestPalindromicSubstring.playground#CharacterRangeLen=0&amp;CharacterRangeLoc=1607&amp;EndingColumnNumber=0&amp;EndingLineNumber=59&amp;StartingColumnNumber=0&amp;StartingLineNumber=59&amp;Timestamp=545076443.33943"
+         documentLocation = "file:///Users/mohitathwani/Desktop/SwiftCodingChallenges/longestPalindromicSubstring/LongestPalindromicSubstring.playground#CharacterRangeLen=518&amp;CharacterRangeLoc=2237&amp;EndingColumnNumber=0&amp;EndingLineNumber=101&amp;StartingColumnNumber=0&amp;StartingLineNumber=82&amp;Timestamp=545162366.909483"
          lockedSize = "{357, 189}"
          selectedRepresentationIndex = "0"
          shouldTrackSuperviewWidth = "NO">
       </LoggerValueHistoryTimelineItem>
       <LoggerValueHistoryTimelineItem
-         documentLocation = "file:///Users/mohitathwani/Desktop/SwiftCodingChallenges/longestPalindromicSubstring/LongestPalindromicSubstring.playground#CharacterRangeLen=1&amp;CharacterRangeLoc=1353&amp;EndingColumnNumber=0&amp;EndingLineNumber=50&amp;StartingColumnNumber=5&amp;StartingLineNumber=49&amp;Timestamp=545076443.339548"
+         documentLocation = "file:///Users/mohitathwani/Desktop/SwiftCodingChallenges/longestPalindromicSubstring/LongestPalindromicSubstring.playground#CharacterRangeLen=1&amp;CharacterRangeLoc=1353&amp;EndingColumnNumber=0&amp;EndingLineNumber=50&amp;StartingColumnNumber=5&amp;StartingLineNumber=49&amp;Timestamp=545162366.909691"
          selectedRepresentationIndex = "0"
          shouldTrackSuperviewWidth = "NO">
       </LoggerValueHistoryTimelineItem>
       <LoggerValueHistoryTimelineItem
-         documentLocation = "file:///Users/mohitathwani/Desktop/SwiftCodingChallenges/longestPalindromicSubstring/LongestPalindromicSubstring.playground#CharacterRangeLen=0&amp;CharacterRangeLoc=1353&amp;EndingColumnNumber=5&amp;EndingLineNumber=49&amp;StartingColumnNumber=5&amp;StartingLineNumber=49&amp;Timestamp=545076443.3396519"
+         documentLocation = "file:///Users/mohitathwani/Desktop/SwiftCodingChallenges/longestPalindromicSubstring/LongestPalindromicSubstring.playground#CharacterRangeLen=0&amp;CharacterRangeLoc=1353&amp;EndingColumnNumber=5&amp;EndingLineNumber=49&amp;StartingColumnNumber=5&amp;StartingLineNumber=49&amp;Timestamp=545162366.909889"
          selectedRepresentationIndex = "0"
          shouldTrackSuperviewWidth = "NO">
       </LoggerValueHistoryTimelineItem>
       <LoggerValueHistoryTimelineItem
-         documentLocation = "file:///Users/mohitathwani/Desktop/SwiftCodingChallenges/longestPalindromicSubstring/LongestPalindromicSubstring.playground#CharacterRangeLen=1&amp;CharacterRangeLoc=1353&amp;EndingColumnNumber=0&amp;EndingLineNumber=50&amp;StartingColumnNumber=5&amp;StartingLineNumber=49&amp;Timestamp=545076443.339757"
+         documentLocation = "file:///Users/mohitathwani/Desktop/SwiftCodingChallenges/longestPalindromicSubstring/LongestPalindromicSubstring.playground#CharacterRangeLen=1&amp;CharacterRangeLoc=1353&amp;EndingColumnNumber=0&amp;EndingLineNumber=50&amp;StartingColumnNumber=5&amp;StartingLineNumber=49&amp;Timestamp=545162366.9100879"
          selectedRepresentationIndex = "0"
          shouldTrackSuperviewWidth = "NO">
       </LoggerValueHistoryTimelineItem>
       <LoggerValueHistoryTimelineItem
-         documentLocation = "file:///Users/mohitathwani/Desktop/SwiftCodingChallenges/longestPalindromicSubstring/LongestPalindromicSubstring.playground#CharacterRangeLen=0&amp;CharacterRangeLoc=1607&amp;EndingColumnNumber=0&amp;EndingLineNumber=59&amp;StartingColumnNumber=0&amp;StartingLineNumber=59&amp;Timestamp=545076443.339859"
+         documentLocation = "file:///Users/mohitathwani/Desktop/SwiftCodingChallenges/longestPalindromicSubstring/LongestPalindromicSubstring.playground#CharacterRangeLen=518&amp;CharacterRangeLoc=2237&amp;EndingColumnNumber=0&amp;EndingLineNumber=101&amp;StartingColumnNumber=0&amp;StartingLineNumber=82&amp;Timestamp=545162366.910285"
          selectedRepresentationIndex = "0"
          shouldTrackSuperviewWidth = "NO">
       </LoggerValueHistoryTimelineItem>
       <LoggerValueHistoryTimelineItem
-         documentLocation = "file:///Users/mohitathwani/Desktop/SwiftCodingChallenges/longestPalindromicSubstring/LongestPalindromicSubstring.playground#CharacterRangeLen=0&amp;CharacterRangeLoc=1607&amp;EndingColumnNumber=0&amp;EndingLineNumber=59&amp;StartingColumnNumber=0&amp;StartingLineNumber=59&amp;Timestamp=545076443.339963"
+         documentLocation = "file:///Users/mohitathwani/Desktop/SwiftCodingChallenges/longestPalindromicSubstring/LongestPalindromicSubstring.playground#CharacterRangeLen=518&amp;CharacterRangeLoc=2237&amp;EndingColumnNumber=0&amp;EndingLineNumber=101&amp;StartingColumnNumber=0&amp;StartingLineNumber=82&amp;Timestamp=545162366.910483"
          selectedRepresentationIndex = "0"
          shouldTrackSuperviewWidth = "NO">
       </LoggerValueHistoryTimelineItem>
       <LoggerValueHistoryTimelineItem
-         documentLocation = "file:///Users/mohitathwani/Desktop/SwiftCodingChallenges/longestPalindromicSubstring/LongestPalindromicSubstring.playground#CharacterRangeLen=0&amp;CharacterRangeLoc=1607&amp;EndingColumnNumber=0&amp;EndingLineNumber=59&amp;StartingColumnNumber=0&amp;StartingLineNumber=59&amp;Timestamp=545076443.340065"
+         documentLocation = "file:///Users/mohitathwani/Desktop/SwiftCodingChallenges/longestPalindromicSubstring/LongestPalindromicSubstring.playground#CharacterRangeLen=518&amp;CharacterRangeLoc=2237&amp;EndingColumnNumber=0&amp;EndingLineNumber=101&amp;StartingColumnNumber=0&amp;StartingLineNumber=82&amp;Timestamp=545162366.9106801"
          selectedRepresentationIndex = "0"
          shouldTrackSuperviewWidth = "NO">
       </LoggerValueHistoryTimelineItem>
       <LoggerValueHistoryTimelineItem
-         documentLocation = "file:///Users/mohitathwani/Desktop/SwiftCodingChallenges/longestPalindromicSubstring/LongestPalindromicSubstring.playground#CharacterRangeLen=0&amp;CharacterRangeLoc=1607&amp;EndingColumnNumber=0&amp;EndingLineNumber=59&amp;StartingColumnNumber=0&amp;StartingLineNumber=59&amp;Timestamp=545076443.340167"
+         documentLocation = "file:///Users/mohitathwani/Desktop/SwiftCodingChallenges/longestPalindromicSubstring/LongestPalindromicSubstring.playground#CharacterRangeLen=518&amp;CharacterRangeLoc=2237&amp;EndingColumnNumber=0&amp;EndingLineNumber=101&amp;StartingColumnNumber=0&amp;StartingLineNumber=82&amp;Timestamp=545162366.91087"
+         selectedRepresentationIndex = "0"
+         shouldTrackSuperviewWidth = "NO">
+      </LoggerValueHistoryTimelineItem>
+      <LoggerValueHistoryTimelineItem
+         documentLocation = "file:///Users/mohitathwani/Desktop/SwiftCodingChallenges/longestPalindromicSubstring/LongestPalindromicSubstring.playground#CharacterRangeLen=24&amp;CharacterRangeLoc=2731&amp;EndingColumnNumber=0&amp;EndingLineNumber=101&amp;StartingColumnNumber=1&amp;StartingLineNumber=100&amp;Timestamp=545162366.911088"
+         selectedRepresentationIndex = "0"
+         shouldTrackSuperviewWidth = "NO">
+      </LoggerValueHistoryTimelineItem>
+      <LoggerValueHistoryTimelineItem
+         documentLocation = "file:///Users/mohitathwani/Desktop/SwiftCodingChallenges/longestPalindromicSubstring/LongestPalindromicSubstring.playground#CharacterRangeLen=9&amp;CharacterRangeLoc=2340&amp;EndingColumnNumber=18&amp;EndingLineNumber=84&amp;StartingColumnNumber=9&amp;StartingLineNumber=84&amp;Timestamp=545162366.91127"
+         selectedRepresentationIndex = "0"
+         shouldTrackSuperviewWidth = "NO">
+      </LoggerValueHistoryTimelineItem>
+      <LoggerValueHistoryTimelineItem
+         documentLocation = "file:///Users/mohitathwani/Desktop/SwiftCodingChallenges/longestPalindromicSubstring/LongestPalindromicSubstring.playground#CharacterRangeLen=10&amp;CharacterRangeLoc=2366&amp;EndingColumnNumber=19&amp;EndingLineNumber=85&amp;StartingColumnNumber=9&amp;StartingLineNumber=85&amp;Timestamp=545162366.911451"
          selectedRepresentationIndex = "0"
          shouldTrackSuperviewWidth = "NO">
       </LoggerValueHistoryTimelineItem>
