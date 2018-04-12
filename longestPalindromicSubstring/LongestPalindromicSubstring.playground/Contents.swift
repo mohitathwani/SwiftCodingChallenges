@@ -59,51 +59,35 @@ func longestPalindromeSubstring(_ s:String) -> String {
 }
 
 func longestPalindrome(_ s:String) -> String {
-    if(s.count == 1 || s.isEmpty) {
-        return s
-    }
-    
-    //handle length = 2 case
-    
+    var start = 0
+    var end = 0
+
     let charArray = Array(s)
-    var startIndex = 0
-    var maxLen = 0
     
-    for i in 1..<s.count {
-        let (start, length) = expandAround(i, j: i, charArray: charArray)
-        if length > maxLen {
-            startIndex = start
-            maxLen = length
+    for i in 0..<s.count {
+        let length = max(expandAround(i, j: i, charArray: charArray), expandAround(i, j: i + 1, charArray: charArray))
+        print(length)
+        if length > end - start {
+            start = i - (length - 1) / 2
+            end = i + (length / 2)
         }
     }
     
-    let beginningIndex = s.index(s.startIndex, offsetBy: startIndex)
-    let endIndex = s.index(beginningIndex, offsetBy: maxLen)
-    return String(s[beginningIndex..<endIndex])
+    let beginningIndex = s.index(s.startIndex, offsetBy: start)
+    let endIndex = s.index(s.startIndex, offsetBy: end)
+    return String(s[beginningIndex...endIndex])
 }
 
-func expandAround(_ i: Int, j: Int, charArray:[Character]) -> (startIndex:Int, length:Int) {
-    var leftIndex = i - 1
-    var rightIndex = j + 1
-    var curLen = 1
+func expandAround(_ i: Int, j: Int, charArray:[Character]) -> Int {
+    var leftIndex = i
+    var rightIndex = j
     
-    while leftIndex >= 0 && rightIndex < charArray.count {
-        if(charArray[leftIndex] == charArray[rightIndex]) {
-            curLen = rightIndex - leftIndex + 1
-            leftIndex -= 1
-            rightIndex += 1
-        }
+    while (leftIndex - 1) >= 0 && (rightIndex + 1) < charArray.count && charArray[leftIndex - 1] == charArray[rightIndex + 1] {
+        leftIndex -= 1
+        rightIndex += 1
     }
     
-    if leftIndex < 0 {
-        leftIndex = 0
-    }
-
-    if(rightIndex > charArray.count) {
-        rightIndex = charArray.count
-    }
-    
-    return (leftIndex, curLen)
+    return rightIndex - leftIndex - 1
 }
 
-longestPalindrome("dababa")
+longestPalindrome("aaa")
