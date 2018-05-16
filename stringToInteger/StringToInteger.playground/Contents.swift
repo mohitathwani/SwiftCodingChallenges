@@ -45,10 +45,21 @@ func myAtoi(_ str: String) -> Int {
     let charArray = Array(str)
     
     var result = 0
+    var digitSeen = false
     
     for char in charArray {
-        if char == " " {
+        if char == " "{
+            if digitSeen {
+                break
+            }
             continue
+        }
+        
+        if let digit = Int(String(char)) {
+            digitSeen = true
+            result = result * 10 + digit
+        } else {
+            break
         }
     }
     
@@ -57,3 +68,5 @@ func myAtoi(_ str: String) -> Int {
 
 myAtoi("   ") == 0
 myAtoi("  12") == 12
+myAtoi("  12 5") == 12
+myAtoi("abc 123 5") == 0
