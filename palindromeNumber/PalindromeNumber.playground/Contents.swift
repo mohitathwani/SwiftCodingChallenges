@@ -24,8 +24,12 @@ func isPalindrome(_ x: Int) -> Bool {
     return false
   }
   
-  if x < 10 {
+  if x >= 0 && x < 10 {
     return true
+  }
+  
+  if x % 10 == 0 {
+    return false
   }
   
   var original = x
@@ -35,11 +39,16 @@ func isPalindrome(_ x: Int) -> Bool {
     let remainder = original % 10
     reversed = reversed * 10 + remainder
     original = original / 10
+    
+    if  reversed  >= original{
+      return reversed == original || original == reversed / 10
+    }
   }
   
-  return reversed == x
+  return false
 }
 
+isPalindrome(11) == true
 isPalindrome(-5) == false
 isPalindrome(3) == true
 isPalindrome(-121) == false
@@ -47,3 +56,4 @@ isPalindrome(10) == false
 isPalindrome(121) == true
 isPalindrome(-121) == false
 isPalindrome(12321) == true
+isPalindrome(0) == true
