@@ -52,7 +52,7 @@ extension String {
   }
 }
 
-func isMatch(_ string: String, _ pattern: String) -> Bool {
+func isMatch_Recursion(_ string: String, _ pattern: String) -> Bool {
   
   if pattern.isEmpty {
     return string.isEmpty
@@ -66,14 +66,37 @@ func isMatch(_ string: String, _ pattern: String) -> Bool {
   return firstMatch && isMatch(string[1..<string.count], pattern[1..<pattern.count])
 }
 
+func isMatch(_ string: String, _ pattern: String) -> Bool {
+  var T = [[Bool]](repeating: [Bool](repeating: false, count: pattern.count + 1), count: string.count + 1)
+  
+  T[0][0] = true
+  
+  if string.count < 1 || pattern.count < 1 {
+    return false // probably needs thinking...
+  }
+  
+  for i in 1...string.count {
+    for j in 1...pattern.count {
+      if string[i - 1] == pattern[j - 1] || pattern[j - 1] == "." {
+        T[i][j] = T[i - 1][j - 1];
+      }
+    }
+  }
+  
+  
+  return T[string.count][pattern.count]
+  
+}
+
 isMatch("aa", "") == false
 isMatch("ab", "aa") == false
 isMatch("a", "a.") == false
 isMatch("aaa", "a.") == false
 isMatch("a", "aa.") == false
-isMatch("a", "a*") == true
-isMatch("a", ".*") == true
-isMatch("aaabbcd", "a*b*..") == true
-isMatch("cd", "b*..") == true
-isMatch("aaacd", "a*b*..") == true
-isMatch("aaaaaaaaaaaaa", ".*") == true
+isMatch("abc", "a.c") == true
+//isMatch("a", "a*") == true
+//isMatch("a", ".*") == true
+//isMatch("aaabbcd", "a*b*..") == true
+//isMatch("cd", "b*..") == true
+//isMatch("aaacd", "a*b*..") == true
+//isMatch("aaaaaaaaaaaaa", ".*") == true
