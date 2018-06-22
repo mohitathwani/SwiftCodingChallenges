@@ -21,34 +21,39 @@
 //Output: [1,2,3,4,8,12,11,10,9,5,6,7]
 
 func processMatrix(_ matrix:[[Int]], rows: Int, columns: Int, start: Int, result:inout [Int]) {
-  for idx in start...start + columns - 2 {
-    print("Loop 1")
+  
+  var idx = start
+  
+  //process first row
+  while idx < start + columns {
     result.append(matrix[start][idx])
-    print(result)
+    idx += 1
   }
   
-//  if start + 1 < rows {
-    for idx in start...rows - 2 {
-      print("Loop 2")
-      result.append(matrix[idx][columns - 1])
-      print(result)
+  //process right column
+  idx = start + 1
+  while idx < start + rows {
+    result.append(matrix[idx][start + columns - 1])
+    idx += 1
+  }
+  
+  //process bottom row iff rows > 1
+  if rows > 1 {
+    idx = start + columns - 2
+    while idx >= start {
+      result.append(matrix[start + rows - 1][idx])
+      idx -= 1
     }
-//  }
-  
-  for idx in (start + 1...columns - 1).reversed() {
-    print("Loop 3")
-    result.append(matrix[rows - 1][idx])
-    print(result)
   }
   
-//  if start + 1 < rows {
-    for idx in ((start + 1)...(rows - 1)).reversed() {
-      print("Loop 4")
+  //process left column iff columns > 1
+  if columns > 1 {
+    idx = start + rows - 2
+    while idx >= start + 1 {
       result.append(matrix[idx][start])
-      print(result)
-//    }
+      idx -= 1
+    }
   }
-  
 }
 
 func spiralOrder(_ matrix: [[Int]]) -> [Int] {
@@ -72,5 +77,8 @@ func spiralOrder(_ matrix: [[Int]]) -> [Int] {
   return result
 }
 
-//spiralOrder([[Int]]())
+spiralOrder([[Int]]())
+print(spiralOrder([[6,7]]))
 print(spiralOrder([[1,2,3,4],[5,6,7,8],[9,10,11,12]]))
+print(spiralOrder([[6],[7]]))
+print(spiralOrder([[1,2,3], [4,5,6], [7,8,9], [10,11,12], [13,14,15]]))
