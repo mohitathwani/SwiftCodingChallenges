@@ -24,7 +24,7 @@ def generateParenthesis(n):
 	return result
 
 def backtrack(n, s, result, numOpen = 0, numClose = 0):
-	"Add comment"
+	"Recursive function to add a left or right parenthesis, depending on the count of left parenthesis."
 	if len(s) == 2 * n :
 	  result.append(s)
 	  return
