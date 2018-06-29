@@ -68,10 +68,25 @@ func calcEquation(_ equations: [[String]], _ values: [Double], _ queries: [[Stri
       if table[i][j] != -1 {
         continue
       }
-      print(i,j)
+      for k in stride(from: 0, to: map.count, by: 1) {
+        if table[i][k] != -1 && table[k][j] != -1{
+          table[i][j] = table[i][k] * table[k][j]
+          table[j][i] = 1 / table[i][j]
+        }
+      }
+    }
+  }
+  
+  for query in queries {
+    let firstElement = query[0]
+    let secondElement = query[1]
+    if let i = map[firstElement], let j = map[secondElement] {
+      result.append(table[i][j])
+    } else {
+      result.append(-1)
     }
   }
   return result
 }
 
-calcEquation([["a", "b"], ["b","c"]], [2,3], [["a","c"], ["b", "a"]])
+calcEquation([["a", "b"], ["b","c"]], [2,3], [["a","c"], ["b", "a"], ["a","e"], ["a","a"],[ "x","x"]]) == [6,0.5,-1,1,-1]
