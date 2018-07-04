@@ -17,6 +17,7 @@
 //Given word = "ABCB", return false.
 
 func dfs(i: Int, j: Int, index: Int, chars: [Character], board:[[Character]], map:inout [[Bool]]) -> Bool {
+  
   let topRow = i - 1
   let bottomRow = i + 1
   let leftColumn = j - 1
@@ -27,12 +28,10 @@ func dfs(i: Int, j: Int, index: Int, chars: [Character], board:[[Character]], ma
   
   let isLastChar = index == chars.count - 1
   
-//  if isLastChar {
-//    print(board[i][j], i, j, index)
-//    return board[i][j] == chars[index]
-//  }
+  if isLastChar {
+    return board[i][j] == chars[index]
+  }
   
-  print("At index \(index)")
   if topRow >= 0 && !map[topRow][j] && !isLastChar && board[topRow][j] == chars[index + 1] {
     map[topRow][j] = true
     let result = dfs(i: topRow, j: j, index: index + 1, chars: chars, board: board, map: &map)
@@ -43,6 +42,7 @@ func dfs(i: Int, j: Int, index: Int, chars: [Character], board:[[Character]], ma
   }
   
   if bottomRow < numRows && !map[bottomRow][j] && !isLastChar && board[bottomRow][j] == chars[index + 1] {
+    map[bottomRow][j] = true
     let result = dfs(i: bottomRow, j: j, index: index + 1, chars: chars, board: board, map: &map)
     if result == true {
       return true
@@ -51,6 +51,7 @@ func dfs(i: Int, j: Int, index: Int, chars: [Character], board:[[Character]], ma
   }
   
   if leftColumn >= 0 && !map[i][leftColumn] && !isLastChar && board[i][leftColumn] == chars[index + 1] {
+    map[i][leftColumn] = true
     let result = dfs(i: i, j: leftColumn, index: index + 1, chars: chars, board: board, map: &map)
     if result == true {
       return true
@@ -59,6 +60,7 @@ func dfs(i: Int, j: Int, index: Int, chars: [Character], board:[[Character]], ma
   }
   
   if rightColumn < numCols && !map[i][rightColumn] && !isLastChar && board[i][rightColumn] == chars[index + 1] {
+    map[i][rightColumn] = true
     let result = dfs(i: i, j: rightColumn, index: index + 1, chars: chars, board: board, map: &map)
     if result == true {
       return true
@@ -104,6 +106,6 @@ func exist(_ board: [[Character]], _ word: String) -> Bool {
   return false
 }
 
-//exist([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "ABCCED")
-//exist([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "SEE")
+exist([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "ABCCED")
+exist([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "SEE")
 exist([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "ABCB")
