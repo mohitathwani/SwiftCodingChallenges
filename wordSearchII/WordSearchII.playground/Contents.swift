@@ -76,11 +76,9 @@ func findWords(_ board: [[Character]], _ words: [String]) -> [String] {
   for i in stride(from: 0, to: numRows, by: 1) {
     for j in stride(from: 0, to: numCols, by: 1) {
       if root[board[i][j]] != nil {
-//        print(board[i][j])
+        map[i][j] = true
         dfs(i: i, j: j, node: root[board[i][j]]!, map: &map, board: board, results: &results)
-//        if let str = string {
-//          result.append(str)
-//        }
+        map[i][j] = false
       }
     }
   }
