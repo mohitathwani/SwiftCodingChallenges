@@ -120,6 +120,6 @@ class TrieNode {
   }
 }
 
-//findWords([["o","a","a","n"],["e","t","a","e"],["i","h","k","r"],["l","f","l","v"]], ["oath","pea","eat","rain", "oat", "lie"])
+findWords([["o","a","a","n"],["e","t","a","e"],["i","h","k","r"],["l","f","l","v"]], ["oath","pea","eat","rain", "oat", "lie"])
 
 findWords([["a", "a"]], ["aaa"])
