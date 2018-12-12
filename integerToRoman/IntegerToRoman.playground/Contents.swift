@@ -74,7 +74,7 @@ func intToRoman(_ num: Int) -> String {
   }
   
   func processTens() {
-    let tens = (num / 10) * 10
+    let tens = ((num / 10) * 10) % 100
     if let tens = map[tens] {
       result = tens + result
       return
@@ -95,29 +95,47 @@ func intToRoman(_ num: Int) -> String {
     }
   }
   
+  func processHundreds() {
+    let hundreds = ((num / 100) * 100) % 1000
+    if let hundreds = map[hundreds] {
+      result = hundreds + result
+      return
+    }
+    
+    if hundreds < 500 {
+      for _ in 0..<(hundreds / 100) {
+        result = map[100]! + result
+      }
+    }
+    
+    if hundreds > 500 {
+      var temp = map[500]!
+      for _ in 0..<(hundreds - 500) / 100 {
+        temp += map[100]!
+      }
+      result = temp + result
+    }
+  }
+  
+  func processThousands() {
+    let thousands = ((num / 1000) * 1000) % 10000
+    if let thousands = map[thousands] {
+      result = thousands + result
+      return
+    }
+    
+    if thousands < 4000 {
+      for _ in 0..<(thousands / 1000) {
+        result = map[1000]! + result
+      }
+    }
+  }
+  
   processUnits()
   processTens()
+  processHundreds()
+  processThousands()
   return result
 }
 
-intToRoman(1)
-intToRoman(2)
-intToRoman(3)
-intToRoman(4)
-intToRoman(5)
-intToRoman(6)
-intToRoman(7)
-intToRoman(8)
-intToRoman(9)
-intToRoman(10)
-intToRoman(11)
-intToRoman(12)
-intToRoman(13)
-intToRoman(14)
-intToRoman(15)
-intToRoman(16)
-intToRoman(17)
-intToRoman(18)
-intToRoman(19)
-intToRoman(20)
-intToRoman(90)
+intToRoman(1994)
