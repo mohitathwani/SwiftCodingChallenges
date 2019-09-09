@@ -31,9 +31,9 @@ node1.right = node3
 
 node5.left = Node(value: 6)
 
-func weave(left: inout [Int], right: inout [Int], prefix: inout [Int], results: inout [[Int]]) {
+func weave(left: inout [Int], right: inout [Int], temp: inout [Int], results: inout [[Int]]) {
   if left.isEmpty || right.isEmpty {
-    var result = prefix
+    var result = temp
     result.append(contentsOf: left)
     result.append(contentsOf: right)
     results.append(result)
@@ -41,15 +41,15 @@ func weave(left: inout [Int], right: inout [Int], prefix: inout [Int], results: 
   }
   
   let leftFirst = left.removeFirst()
-  prefix.append(leftFirst)
-  weave(left: &left, right: &right, prefix: &prefix, results: &results)
-  prefix.removeLast()
+  temp.append(leftFirst)
+  weave(left: &left, right: &right, temp: &temp, results: &results)
+  temp.removeLast()
   left.insert(leftFirst, at: 0)
   
   let rightFirst = right.removeFirst()
-  prefix.append(rightFirst)
-  weave(left: &left, right: &right, prefix: &prefix, results: &results)
-  prefix.removeLast()
+  temp.append(rightFirst)
+  weave(left: &left, right: &right, temp: &temp, results: &results)
+  temp.removeLast()
   right.insert(rightFirst, at: 0)
 }
 
@@ -72,7 +72,7 @@ func bstSequences(root: Node?) -> [[Int]] {
   for var leftList in leftLists {
     for var rightList in rightLists {
       var weavedList = [[Int]]()
-      weave(left: &leftList, right: &rightList, prefix: &prefix, results: &weavedList)
+      weave(left: &leftList, right: &rightList, temp: &prefix, results: &weavedList)
       allResults.append(contentsOf: weavedList)
     }
   }
