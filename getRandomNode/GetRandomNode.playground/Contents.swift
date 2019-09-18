@@ -1,3 +1,22 @@
+class BinarySearchTreeNode: CustomStringConvertible {
+  public private(set) var value: Int
+  var left: BinarySearchTreeNode?
+  var right: BinarySearchTreeNode?
+  var parent:BinarySearchTreeNode?
+  
+  var leftCount = 0
+  var rightCount = 0
+  
+  var description: String {
+    return "Value: \(value); leftCount: \(leftCount); rightCount: \(rightCount)"
+  }
+  
+  init(value: Int) {
+    self.value = value
+  }
+  
+}
+
 class BinarySearchTree {
   private var root: BinarySearchTreeNode?
   
@@ -5,103 +24,130 @@ class BinarySearchTree {
     root = BinarySearchTreeNode(value: value)
   }
   
-  func insert(value: Int) {
-    root?.insert(value: value)
-  }
-  
-  func print() {
-    root?.printInOrder()
-  }
-  
-  func find(value: Int) -> Bool {
-    return root?.find(value: value) ?? false
-  }
-  
-  func delete(value: Int) {
-    guard let root = root else {
+  public func insert(value: Int) {
+    guard let tempRoot = self.root else {
+      self.root = BinarySearchTreeNode(value: value)
       return
     }
     
-    if root.value == value { // deleting root
-      if root.left == nil && root.right == nil {
-        self.root = nil
-      }
-      
-      else if root.left == nil {
-        self.root = root.right
-      }
-      
-      else {
-        let left = root.left
-        let right = root.right
-        let newRoot = root.getSubstituteForRoot(node: root)
-        if let parent = newRoot?.parent, parent.value != root.value {
-          newRoot?.parent?.right = nil
-        }
-        
-        self.root = newRoot
-        self.root?.left = left
-        self.root?.right = right
-      }
-    }
-    
-    root.delete(value: value)
-  }
-}
-
-class BinarySearchTreeNode: CustomStringConvertible {
-  public private(set) var value: Int
-  public var left: BinarySearchTreeNode?
-  public var right: BinarySearchTreeNode?
-  var parent:BinarySearchTreeNode?
-  
-  var description: String {
-    return "\(value)"
-  }
-  
-  init(value: Int) {
-    self.value = value
-  }
-  
-  func insert(value: Int) {
-    if value <= self.value && left == nil {
-      left = BinarySearchTreeNode(value: value)
-      left?.parent = self
-    }
-    
-    else if value > self.value && right == nil {
-      right = BinarySearchTreeNode(value: value)
-      right?.parent = self
-    }
-    
-    else if value <= self.value {
-      left?.insert(value: value)
-    }
-    
-    else {
-      right?.insert(value: value)
-    }
-  }
-  
-  func printInOrder() {
-    func dfs(root: BinarySearchTreeNode?) {
-      if root == nil {
+    func recursiveInsert(root: BinarySearchTreeNode?) {
+      guard let root = root else {
         return
       }
-      dfs(root: root?.left)
-      print(root!)
-      dfs(root: root?.right)
+      
+      if value <= root.value && root.left == nil {
+        root.left = BinarySearchTreeNode(value: value)
+        root.left?.parent = root
+      }
+      else if value > root.value && root.right == nil {
+        root.right = BinarySearchTreeNode(value: value)
+        root.right?.parent = root
+      }
+      else if value <= root.value {
+        recursiveInsert(root: root.left)
+      }
+      else {
+        recursiveInsert(root: root.right)
+      }
+      
+      if let left = root.left {
+        root.leftCount = left.leftCount + left.rightCount + 1
+      }
+      
+      if let right = root.right {
+        root.rightCount = right.leftCount + right.rightCount + 1
+      }
     }
-    dfs(root: self)
+    
+    recursiveInsert(root: tempRoot)
   }
   
-  func find(value: Int) -> Bool {
+  public func print() {
+    func dfs(root: BinarySearchTreeNode?) {
+      guard let root = root else {
+        return
+      }
+      
+      dfs(root: root.left)
+      Swift.print(root)
+      dfs(root: root.right)
+    }
+    
+    dfs(root: root)
+  }
+  
+  public func find(value: Int) -> Bool {
     return findNode(value: value) == nil ? false : true
   }
   
-  func findNode(value: Int) -> BinarySearchTreeNode? {
+  public func delete(value: Int) {
+    guard let nodeToDelete = findNode(value: value) else {
+      return
+    }
+    
+    if nodeToDelete.left == nil {
+      transplant(node: nodeToDelete.right, over: nodeToDelete)
+    }
+    else if (nodeToDelete.right == nil) {
+      transplant(node: nodeToDelete.left, over: nodeToDelete)
+    }
+    else {
+      guard let successorNode = treeMinimum(node: nodeToDelete.right!) else {
+        fatalError()
+      }
+      
+      if let successorParent = successorNode.parent, successorParent !== nodeToDelete {
+        transplant(node: successorNode.right, over: successorNode)
+        successorNode.right = nodeToDelete.right
+        successorNode.right?.parent = successorNode
+      }
+      transplant(node: successorNode, over: nodeToDelete)
+      successorNode.left = nodeToDelete.left
+      successorNode.left?.parent = successorNode
+    }
+    
+    updateChildrenCount(for: root)
+  }
+  
+  public func getRandomNode() -> Int? {
+    guard let root = root else {
+      return nil
+    }
+    
+    return getRandomNode(from: root)
+  }
+  
+  private func getRandomNode(from root: BinarySearchTreeNode?) -> Int? {
+    guard let root = root else {
+      return nil
+    }
+    
+    let totalCount = root.leftCount + root.rightCount
+    Swift.print("totalCount: ", totalCount)
+    guard totalCount != 0 else {
+      return root.value
+    }
+    
+    let random = Int.random(in: 0..<totalCount)
+    Swift.print("random: ", random)
+    if random < root.leftCount {
+      return getRandomNode(from: root.left)
+    }
+    else if random == root.leftCount {
+      return root.value
+    }
+    else {
+      return getRandomNode(from: root.right)
+    }
+  }
+  
+  private func findNode(value: Int) -> BinarySearchTreeNode? {
+    guard let root = root else {
+      return nil
+    }
+    
     var q = [BinarySearchTreeNode]()
-    q.append(self)
+    q.append(root)
     
     while !q.isEmpty {
       let first = q.remove(at: 0)
@@ -120,65 +166,49 @@ class BinarySearchTreeNode: CustomStringConvertible {
     return nil
   }
   
-  func getSubstituteForRoot(node: BinarySearchTreeNode) -> BinarySearchTreeNode? {
-    var temp = node.left
-    while temp?.right != nil {
-      temp = temp?.right
+  private func treeMinimum(node: BinarySearchTreeNode) -> BinarySearchTreeNode? {
+    var temp = node
+    while temp.left != nil {
+      temp = temp.left!
     }
     return temp
   }
   
-  func delete(value: Int) {
-    guard let nodeToDelete = findNode(value: value) else {
+  private func transplant(node: BinarySearchTreeNode?, over nodeToDelete: BinarySearchTreeNode) {
+    if nodeToDelete.parent == nil {
+      self.root = node
+    }
+    else if nodeToDelete === nodeToDelete.parent?.left {
+      nodeToDelete.parent?.left = node
+    }
+    else {
+      nodeToDelete.parent?.right = node
+    }
+    
+    if node != nil {
+      node?.parent = nodeToDelete.parent
+    }
+  }
+  
+  private func updateChildrenCount(for root: BinarySearchTreeNode?) {
+    guard let root = root else {
       return
     }
     
-    if nodeToDelete.left == nil && nodeToDelete.right == nil { //Leaf node
-      if nodeToDelete.isLeftChild() {
-        nodeToDelete.parent?.left = nil
-      }
-      
-      else if nodeToDelete.isRightChild(){
-        nodeToDelete.parent?.right = nil
-      }
+    if root.left == nil && root.right == nil {
+      return
     }
     
-    else if nodeToDelete.right == nil { //has only left child
-      if nodeToDelete.isLeftChild() {
-        nodeToDelete.parent?.left = nodeToDelete.left
-      }
-      
-      else if nodeToDelete.isRightChild() {
-        nodeToDelete.parent?.right = nodeToDelete.left
-      }
+    updateChildrenCount(for: root.left)
+    updateChildrenCount(for: root.right)
+    
+    if let left = root.left {
+      root.leftCount = left.leftCount + left.rightCount + 1
     }
     
-    else if nodeToDelete.left == nil { //has only right child
-      if nodeToDelete.isLeftChild() {
-        nodeToDelete.parent?.left = nodeToDelete.right
-      }
-      
-      else if nodeToDelete.isRightChild() {
-        nodeToDelete.parent?.right = nodeToDelete.right
-      }
+    if let right = root.right {
+      root.rightCount = right.leftCount + right.rightCount + 1
     }
-    
-    else {
-      if nodeToDelete.isLeftChild() {
-        nodeToDelete.parent?.left = nodeToDelete.left
-      }
-      else if nodeToDelete.isRightChild() {
-        nodeToDelete.parent?.right = nodeToDelete.left
-      }
-    }
-  }
-  
-  func isLeftChild() -> Bool {
-    return self.parent?.left?.value == self.value
-  }
-  
-  func isRightChild() -> Bool {
-    return self.parent?.right?.value == self.value
   }
 }
 
@@ -190,7 +220,8 @@ tree.insert(value: 4)
 tree.insert(value: 6)
 tree.insert(value: 7)
 //tree.print()
-tree.find(value: 3)
-tree.find(value: 0)
-tree.delete(value: 6)
-tree.print()
+//tree.find(value: 3)
+//tree.find(value: 0)
+//tree.delete(value: 3)
+//tree.print()
+tree.getRandomNode()
