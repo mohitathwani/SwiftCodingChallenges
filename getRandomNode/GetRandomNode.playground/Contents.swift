@@ -123,13 +123,11 @@ class BinarySearchTree {
     }
     
     let totalCount = root.leftCount + root.rightCount
-    Swift.print("totalCount: ", totalCount)
     guard totalCount != 0 else {
       return root.value
     }
     
     let random = Int.random(in: 0..<totalCount)
-    Swift.print("random: ", random)
     if random < root.leftCount {
       return getRandomNode(from: root.left)
     }
