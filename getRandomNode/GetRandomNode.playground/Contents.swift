@@ -1,46 +1,27 @@
-class BinarySearchTreeNode: CustomStringConvertible {
-  public private(set) var value: Int
-  var left: BinarySearchTreeNode?
-  var right: BinarySearchTreeNode?
-  var parent:BinarySearchTreeNode?
-  
-  var leftCount = 0
-  var rightCount = 0
-  
-  var description: String {
-    return "Value: \(value); leftCount: \(leftCount); rightCount: \(rightCount)"
-  }
-  
-  init(value: Int) {
-    self.value = value
-  }
-  
-}
-
 class BinarySearchTree {
-  private var root: BinarySearchTreeNode?
+  private var root: Node?
   
   init(rootValue value: Int) {
-    root = BinarySearchTreeNode(value: value)
+    root = Node(value: value)
   }
   
   public func insert(value: Int) {
     guard let tempRoot = self.root else {
-      self.root = BinarySearchTreeNode(value: value)
+      self.root = Node(value: value)
       return
     }
     
-    func recursiveInsert(root: BinarySearchTreeNode?) {
+    func recursiveInsert(root: Node?) {
       guard let root = root else {
         return
       }
       
       if value <= root.value && root.left == nil {
-        root.left = BinarySearchTreeNode(value: value)
+        root.left = Node(value: value)
         root.left?.parent = root
       }
       else if value > root.value && root.right == nil {
-        root.right = BinarySearchTreeNode(value: value)
+        root.right = Node(value: value)
         root.right?.parent = root
       }
       else if value <= root.value {
@@ -63,7 +44,7 @@ class BinarySearchTree {
   }
   
   public func print() {
-    func dfs(root: BinarySearchTreeNode?) {
+    func dfs(root: Node?) {
       guard let root = root else {
         return
       }
@@ -117,7 +98,7 @@ class BinarySearchTree {
     return getRandomNode(from: root)
   }
   
-  private func getRandomNode(from root: BinarySearchTreeNode?) -> Int? {
+  private func getRandomNode(from root: Node?) -> Int? {
     guard let root = root else {
       return nil
     }
@@ -139,7 +120,7 @@ class BinarySearchTree {
     }
   }
   
-  private func findNode(value: Int) -> BinarySearchTreeNode? {
+  private func findNode(value: Int) -> Node? {
     var tempNode = root
     
     while tempNode != nil {
@@ -156,7 +137,7 @@ class BinarySearchTree {
     return nil
   }
   
-  private func treeMinimum(node: BinarySearchTreeNode) -> BinarySearchTreeNode? {
+  private func treeMinimum(node: Node) -> Node? {
     var temp = node
     while temp.left != nil {
       temp = temp.left!
@@ -164,7 +145,7 @@ class BinarySearchTree {
     return temp
   }
   
-  private func transplant(node: BinarySearchTreeNode?, over nodeToDelete: BinarySearchTreeNode) {
+  private func transplant(node: Node?, over nodeToDelete: Node) {
     if nodeToDelete.parent == nil {
       self.root = node
     }
@@ -180,7 +161,7 @@ class BinarySearchTree {
     }
   }
   
-  private func updateChildrenCount(for root: BinarySearchTreeNode?) {
+  private func updateChildrenCount(for root: Node?) {
     guard let root = root else {
       return
     }
@@ -199,6 +180,27 @@ class BinarySearchTree {
     if let right = root.right {
       root.rightCount = right.leftCount + right.rightCount + 1
     }
+  }
+}
+
+extension BinarySearchTree {
+  class Node: CustomStringConvertible {
+    public private(set) var value: Int
+    var left: Node?
+    var right: Node?
+    var parent:Node?
+    
+    var leftCount = 0
+    var rightCount = 0
+    
+    var description: String {
+      return "Value: \(value); leftCount: \(leftCount); rightCount: \(rightCount)"
+    }
+    
+    init(value: Int) {
+      self.value = value
+    }
+    
   }
 }
 
