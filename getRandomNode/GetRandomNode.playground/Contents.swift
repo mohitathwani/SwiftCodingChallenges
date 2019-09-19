@@ -140,25 +140,17 @@ class BinarySearchTree {
   }
   
   private func findNode(value: Int) -> BinarySearchTreeNode? {
-    guard let root = root else {
-      return nil
-    }
+    var tempNode = root
     
-    var q = [BinarySearchTreeNode]()
-    q.append(root)
-    
-    while !q.isEmpty {
-      let first = q.remove(at: 0)
-      if first.value == value {
-        return first
+    while tempNode != nil {
+      if tempNode!.value == value  {
+        return tempNode
       }
       
-      if let left = first.left {
-        q.append(left)
-      }
-      
-      if let right = first.right {
-        q.append(right)
+      if value < tempNode!.value {
+        tempNode = tempNode!.left
+      } else {
+        tempNode = tempNode!.right
       }
     }
     return nil
@@ -218,8 +210,8 @@ tree.insert(value: 4)
 tree.insert(value: 6)
 tree.insert(value: 7)
 //tree.print()
-//tree.find(value: 3)
-//tree.find(value: 0)
+tree.find(value: 3)
+tree.find(value: 0)
 //tree.delete(value: 3)
 //tree.print()
 tree.getRandomNode()
