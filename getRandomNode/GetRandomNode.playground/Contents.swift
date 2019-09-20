@@ -58,7 +58,7 @@ class BinarySearchTree {
   }
   
   public func find(value: Int) -> Bool {
-    return findNode(value: value) == nil ? false : true
+    return findNode(value: value).toBool
   }
   
   public func delete(value: Int) {
@@ -188,7 +188,7 @@ extension BinarySearchTree {
     public private(set) var value: Int
     var left: Node?
     var right: Node?
-    var parent:Node?
+    weak var parent:Node?
     
     var leftCount = 0
     var rightCount = 0
@@ -201,19 +201,32 @@ extension BinarySearchTree {
       self.value = value
     }
     
+    deinit {
+      Swift.print("Deleting: ", self)
+    }
   }
 }
 
-let tree = BinarySearchTree(rootValue: 5)
-tree.insert(value: 3)
-tree.insert(value: 2)
-tree.insert(value: 1)
-tree.insert(value: 4)
-tree.insert(value: 6)
-tree.insert(value: 7)
+extension Optional where Wrapped: BinarySearchTree.Node {
+  var toBool: Bool {
+    guard let _ = self else {
+      return false
+    }
+    return true
+  }
+}
+
+var tree: BinarySearchTree? = BinarySearchTree(rootValue: 5)
+tree!.insert(value: 3)
+tree!.insert(value: 2)
+tree!.insert(value: 1)
+tree!.insert(value: 4)
+tree!.insert(value: 6)
+tree!.insert(value: 7)
 //tree.print()
-tree.find(value: 3)
-tree.find(value: 0)
+tree!.find(value: 3)
+tree!.find(value: 0)
 //tree.delete(value: 3)
 //tree.print()
-tree.getRandomNode()
+tree!.getRandomNode()
+tree = nil
