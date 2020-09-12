@@ -1,5 +1,6 @@
 class BinarySearchTree {
-  private var root: Node?
+  private(set) var root: Node?
+  
   
   init(rootValue value: Int) {
     root = Node(value: value)
@@ -214,10 +215,37 @@ tree!.insert(value: 1)
 tree!.insert(value: 4)
 tree!.insert(value: 6)
 tree!.insert(value: 7)
-//tree.print()
-tree!.find(value: 3)
-tree!.find(value: 0)
-//tree.delete(value: 3)
-//tree.print()
-tree!.getRandomNode()
-tree = nil
+
+func pathsWithSum(tree: BinarySearchTree, targetSum: Int) -> Int {
+  var freqMap = [Int:Int]()
+  var totalPaths = 0
+  var runningSum = 0
+  
+  func compute(node: BinarySearchTree.Node?) {
+    guard let node = node else {
+      return
+    }
+    runningSum += node.value
+    let difference = runningSum - targetSum
+
+    if let freq = freqMap[difference] {
+      totalPaths = freq
+    }
+    
+    if runningSum == targetSum {
+      totalPaths += 1
+    }
+    
+    if let freq = freqMap[runningSum] {
+      freqMap[runningSum] = freq + 1
+    }
+    totalPaths += compute(node: <#T##BinarySearchTree.Node?#>)
+    
+    
+  }
+  compute(node: tree.root)
+  
+  return totalPaths
+}
+
+
